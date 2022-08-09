@@ -15,26 +15,25 @@ class AuthController extends Controller
     {
         return view('auth.login');
     }
-    public function unauthorized(){
+    public function unauthorized()
+    {
         return view('layouts.unauthorized-user');
     }
     public function postLogin(Request $request)
     {
         // dd(Hash::make($request->password));
         $request->validate([
-            'email'=>'required',
-            'password'=>'required'
+            'email' => 'required',
+            'password' => 'required'
         ]);
-        $credential = $request->only('email','password');
-        if(Auth::attempt($credential))
-        {
-            if(auth()->user()->status == 1){
+        $credential = $request->only('email', 'password');
+        if (Auth::attempt($credential)) {
+            if (auth()->user()->status == 1) {
                 return redirect()->intended('product/index')->withSuccess('You have successfully loggedin');
             }
-                return redirect()->intended('/')->withSuccess('You have successfully loggedin');
-
-        }else{
-            return redirect("login")->withSuccess('Oppes! You have entered invalid credentials');
+            return redirect()->intended('/')->withSuccess('You have successfully loggedin');
+        } else {
+            return redirect("login")->withError('Oppes! You have entered invalid credentials');
         }
     }
     public function registration()
@@ -45,23 +44,24 @@ class AuthController extends Controller
     {
         $password = Hash::make($request->password);
         $request->validate([
-            'name'=>'required',
-            'email'=>'required',
-            'password'=>'required'
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required'
         ]);
         User::create([
-            'name'=>$request->name,
-            'email'=>$request->email,
-            'password'=>$password
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => $password
         ]);
-        return redirect('login')->withSuccess('message', 'SUccessfully registered');
+        return redirect('/')->withSuccess('message', 'Successfully registered');
     }
 
     //logout
-        public function logout() {
-            Session::flush();
-            Auth::logout();
+    public function logout()
+    {
+        Session::flush();
+        Auth::logout();
 
-            return Redirect('login');
-        }
+        return Redirect('login');
+    }
 }

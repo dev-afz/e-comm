@@ -58,6 +58,19 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('view-user')}}" tabindex="-1" aria-disabled="true">Users</a>
                     </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Coupons
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="/coupons/index">Add / View</a></li>
+                            {{-- <li><a class="dropdown-item" href="/order/accepted">Accepted</a></li>
+                            <li><a class="dropdown-item" href="/order/shipped">Shipped</a></li>
+                            <li><a class="dropdown-item" href="/order/delivered">Delivered</a></li>
+                            <li><a class="dropdown-item" href="/order/cancelled">Cancelled</a></li> --}}
+                        </ul>
+                    </li>
                 </ul>
                 <form class="d-flex">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -91,5 +104,4 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
-
 </html>

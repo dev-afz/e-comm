@@ -11,4 +11,13 @@ class Product extends Model
     protected $fillable = [
         'name', 'price', 'image', 'description'
     ];
+
+    public function scopeFilter($query, array $filter)
+    {
+        if($filter['search'] ?? false){
+            $query->where('name','like','%'.request('search').'%')
+                ->orWhere('price','like','%'.request('search').'%')
+                ->orWhere('description','like','%'.request('search').'%');
+        }
+    }
 }

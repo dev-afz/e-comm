@@ -129,11 +129,25 @@
                             </tbody>
                         </table>
                         <div class="form-group">
+                            <input type="checkbox" name="haveCouponCode" value="1" onclick="haveCoupon()" id="check" /><span> I have a coupon code</span>
+
+                            <div class="summary-item" id="summary-item">
+                                <form action="">
+
+                                    <p class="row-in-form">
+                                        <label for="">Enter your coupon code</label>
+                                        <input type="text" name="coupon-code" >
+                                    </p>
+                                    <button type="submit" class="btn btn-primary btn-sm">Apply</button>
+                                </form>
+                            </div>
+                        </div><hr>
+                        <div class="form-group">
                             <label for="">Total : {{$total}}</label>
                         </div>
                         <div class="form-group">
                             <label for="">Payment Mode</label>
-                            <select name="payment_type" id="payment_type" class="form-select">
+                            <select name="payment_type" id="payment_type" class="form-select" required>
                                 <option value="">Select</option>
                                 <option value="cod">COD</option>
                                 <option value="online">Online</option>
@@ -153,6 +167,7 @@
 <script>
         $(document).ready(function () {
             $('.cod-btn').hide();
+            $('.summary-item').hide();
         });
         $('#payment_type').change(function(){
             $('.cod-btn').show();
@@ -160,6 +175,15 @@
             $("#cod").text(opt);
         });
 
+        function haveCoupon() {
+        let checkBox = document.getElementById('check');
+        let coupon = document.getElementById('summary-item');
+        if(checkBox.checked == true){
+            coupon.style.display = "block";
+        }else{
+            coupon.style.display = "none";
+        }
+       }
     </script>
 @endsection
 </x-user-layout>

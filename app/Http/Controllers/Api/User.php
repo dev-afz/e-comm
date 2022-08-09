@@ -13,7 +13,7 @@ class User extends Controller
     //get all user details
     public function user()
     {
-        return response(ApiUser::where('status', 1)->get(), 200);
+        return response(ApiUser::where('status', 0)->get(), 200);
     }
     //get user details by id
     public function userById($id)
@@ -61,6 +61,6 @@ class User extends Controller
             return response()->json(["message" => 'Record not found!'], 404);
         }
         $delete->delete();
-        return response()->json(null, 204);
+        return response()->json(["message" => 'Record deleted successfully!'], 200);
     }
 }

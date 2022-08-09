@@ -53,18 +53,15 @@
                                     <a href="#" id=" {{ $product->id }}" class="btn btn-primary btn-edit"><i
                                             class="fa fa-pencil"></i></a>
                                     <a href="#" id=" {{ $product->id }}" class="btn btn-danger btn-delete"><i
-                                            class="fa fa-trash"></i></a>
+                                           class="fa fa-trash"></i></a>
                                 </td>
                             </tr>
                         @endforeach
-
                     </tbody>
                 </table>
             </div>
         </div>
-    </div>
-
-
+    </div>    
     <div class="offcanvas offcanvas-end" tabindex="-1" id="add-product" aria-labelledby="offcanvasRightLabel">
         <div class="offcanvas-header">
             <h5 id="offcanvasRightLabel">Add Product</h5>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CouponController;
 use App\Http\Controllers\Orders\OrdersController as OrdersOrdersController;
 use App\Http\Controllers\Orders\ViewOrdersController;
 use App\Http\Controllers\OrdersController;
@@ -12,6 +13,7 @@ use App\Http\Controllers\RazorpayController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserOrderController;
 use App\Http\Controllers\ViewProductController;
+use GuzzleHttp\Middleware;
 use Illuminate\Auth\Middleware\IsAdmin;
 
 /*
@@ -51,8 +53,17 @@ Route::group(['middleware' => ['admin']], function () {
         Route::get('deleted', 'deleted')->name('deleted');
     });
     Route::get('view-user', [UserController::class, 'index'])->name('view-user');
-    Route::controller(OrderStatusController::class)->group(function(){
-        Route::post('tracking-status','trackingstatus')->name('trackingstatus');
+    Route::controller(OrderStatusController::class)->group(function () {
+        Route::post('tracking-status', 'trackingstatus')->name('trackingstatus');
+    });
+
+    //coupons section
+    Route::controller(CouponController::class)->prefix('coupons')->name('coupon.')->group(function () {
+        Route::get('index', 'index')->name('index');
+        Route::post('addCoupon', 'store')->name('addCoupon');
+        Route::get('edit', 'edit')->name('edit');
+        Route::post('update', 'updateCoupon')->name('update');
+        Route::get('delete/{id}', 'delete')->name('delete');
     });
 });
 //Unauthorized page route

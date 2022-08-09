@@ -9,7 +9,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $products = Product::latest()->where('status', 1)->get();
+        $products = Product::latest()->filter(request(['search']))->where('status', 1)->get();
         return view('users.index',compact('products'));
     }
 }
