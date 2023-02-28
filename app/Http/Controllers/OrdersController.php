@@ -64,7 +64,6 @@ class OrdersController extends Controller
                         'total' => $order->product->price * $order->prod_qty,
                         'payment_type' => $request->payment_type,
                     ]);
-
                     $ord->details()->create([
                         'product_id' => $request->product_id,
                         'user_id' => $user_id,
@@ -150,3 +149,4 @@ class OrdersController extends Controller
         }
     }
 }
+    
